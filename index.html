@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta
+    name="theme-color"
+    content="#080611"
+  />
+
+  <meta
+    name="description"
+    content="BirthdayVerse — a cinematic, personalized birthday surprise experience."
+  />
+
+  <meta
+    name="color-scheme"
+    content="dark"
+  />
+
+  <title>BirthdayVerse — A Little Surprise Is Waiting</title>
+
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="BirthdayVerse — A Little Surprise Is Waiting"
+  />
+
+  <meta
+    property="og:description"
+    content="A cinematic, personalized birthday surprise experience."
+  />
+
+  <meta
+    property="og:type"
+    content="website"
+  />
+
+  <!-- Favicon -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎂%3C/text%3E%3C/svg%3E"
+  />
+
+  <!-- Fonts -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Main CSS -->
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <!-- Main JavaScript -->
+  <script
+    src="script.js"
+    defer
+  ></script>
+</head>
+
+<body>
+
+  <!-- =====================================================
+       ACCESSIBILITY STATUS
+  ====================================================== -->
+
+  <div
+    id="statusLive"
+    class="sr-live"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  ></div>
+
+
+  <!-- =====================================================
+       LOADING SCREEN
+  ====================================================== -->
+
+  <div
+    id="loadingScreen"
+    class="loading-screen"
+    role="status"
+    aria-label="Loading BirthdayVerse"
+  >
+
+    <div class="loading-inner">
+
+      <div
+        class="loading-mark"
+        aria-hidden="true"
+      >
+        ✦
+      </div>
+
+      <h1 class="loading-title">
+        BirthdayVerse
+      </h1>
+
+      <div
+        class="loading-bar"
+        aria-hidden="true"
+      >
+        <span class="loading-bar-fill"></span>
+      </div>
+
+      <p class="loading-text">
+        Preparing something special…
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       AMBIENT BACKGROUND
+  ====================================================== -->
+
+  <div
+    class="ambient-background"
+    aria-hidden="true"
+  >
+
+    <div class="ambient-orb ambient-orb--1"></div>
+    <div class="ambient-orb ambient-orb--2"></div>
+    <div class="ambient-orb ambient-orb--3"></div>
+    <div class="ambient-orb ambient-orb--4"></div>
+
+    <div class="ambient-haze"></div>
+
+    <div
+      id="particlesContainer"
+      class="particles-layer"
+    ></div>
+
+    <div class="background-stars"></div>
+    <div class="ambient-vignette"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MAIN APP
+  ====================================================== -->
+
+  <main id="app">
+
+
+    <!-- ===================================================
+         1. WELCOME SCREEN
+    ==================================================== -->
+
+    <section
+      id="welcomeScreen"
+      class="screen welcome-screen"
+      aria-labelledby="welcomeHeading"
+    >
+
+      <div class="welcome-panel glass-panel">
+
+        <div class="welcome-badge">
+          <span class="badge-dot"></span>
+          A private celebration
+        </div>
+
+        <p class="eyebrow">
+          Made for one very special person
+        </p>
+
+        <h1
+          id="welcomeHeading"
+          class="welcome-heading"
+        >
+          A Little Surprise
+          <br />
+          Is <span>Waiting…</span>
+        </h1>
+
+        <p class="welcome-subtitle">
+          Enter the details below and let the celebration begin.
+        </p>
+
+
+        <!-- Form -->
+
+        <form
+          id="welcomeForm"
+          class="welcome-form"
+          novalidate
+        >
+
+          <!-- Name -->
+
+          <div class="field">
+
+            <label for="nameInput">
+              Their name
+            </label>
+
+            <div class="input-wrap">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                ✨
+              </span>
+
+              <input
+                type="text"
+                id="nameInput"
+                name="name"
+                placeholder="e.g. Aanya"
+                autocomplete="given-name"
+                maxlength="40"
+                spellcheck="false"
+                required
+                aria-describedby="nameError"
+              />
+
+            </div>
+
+            <p
+              id="nameError"
+              class="field-error"
+              aria-live="polite"
+            ></p>
+
+          </div>
+
+
+          <!-- Birthday -->
+
+          <div class="field">
+
+            <label for="birthdayInput">
+              Their birthday
+            </label>
+
+            <div class="input-wrap">
+
+              <span
+                class="input-icon"
+                aria-hidden="true"
+              >
+                🎂
+              </span>
+
+              <input
+                type="date"
+                id="birthdayInput"
+                name="birthday"
+                autocomplete="bday"
+                required
+                aria-describedby="birthdayError"
+              />
+
+            </div>
+
+            <p
+              id="birthdayError"
+              class="field-error"
+              aria-live="polite"
+            ></p>
+
+          </div>
+
+
+          <!-- Start -->
+
+          <button
+            type="submit"
+            id="startButton"
+            class="btn btn-primary start-button"
+          >
+
+            <span class="btn-shine"></span>
+
+            <span class="btn-content">
+              <span>Begin the Surprise</span>
+              <span class="btn-arrow">→</span>
+            </span>
+
+          </button>
+
+          <p class="hint-text">
+            One click. One little surprise. ✨
+          </p>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         2. COUNTDOWN
+    ==================================================== -->
+
+    <section
+      id="countdownScreen"
+      class="screen countdown-screen hidden"
+      aria-labelledby="countdownHeading"
+      aria-live="polite"
+      aria-atomic="true"
+    >
+
+      <div class="countdown-content">
+
+        <p class="countdown-microtext">
+          Get ready…
+        </p>
+
+        <h2
+          id="countdownHeading"
+          class="sr-only"
+        >
+          Countdown to the surprise
+        </h2>
+
+        <div
+          id="countdownNumber"
+          class="countdown-number"
+          aria-live="assertive"
+        >
+          3
+        </div>
+
+        <p class="countdown-sub">
+          Something wonderful is about to begin
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         3. BIRTHDAY EXPERIENCE
+    ==================================================== -->
+
+    <section
+      id="birthdayScreen"
+      class="screen birthday-screen hidden"
+      aria-labelledby="birthdayTitle"
+    >
+
+      <!-- Celebration Layers -->
+
+      <div
+        id="balloonsContainer"
+        class="balloons-layer"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        id="confettiContainer"
+        class="confetti-layer"
+        aria-hidden="true"
+      ></div>
+
+      <div
+        id="fireworksContainer"
+        class="fireworks-layer"
+        aria-hidden="true"
+      ></div>
+
+
+      <!-- Main Content -->
+
+      <div class="birthday-content">
+
+        <div class="celebration-badge">
+          <span>✦</span>
+          Today is your special day
+          <span>✦</span>
+        </div>
+
+
+        <!-- Main heading -->
+
+        <h1
+          id="birthdayTitle"
+          class="birthday-title"
+          tabindex="-1"
+        >
+          HAPPY BIRTHDAY
+        </h1>
+
+
+        <!-- Name -->
+
+        <p class="birthday-name-wrap">
+
+          <span
+            id="birthdayName"
+            class="birthday-name"
+          >
+            Friend
+          </span>
+
+        </p>
+
+
+        <!-- Main message -->
+
+        <p
+          id="birthdayMessage"
+          class="birthday-message"
+        >
+          Another year brighter, another year braver —
+          may today hold every bit of joy you deserve.
+        </p>
+
+
+        <!-- =================================================
+             CAKE
+        ================================================== -->
+
+        <div
+          class="cake-stage"
+          aria-hidden="true"
+        >
+
+          <div
+            id="cake"
+            class="cake"
+          >
+
+            <div class="cake-glow"></div>
+
+            <!-- Candle -->
+
+            <div
+              id="candle"
+              class="candle"
+            >
+
+              <span class="wick"></span>
+
+              <span class="flame"></span>
+
+            </div>
+
+
+            <!-- Top layer -->
+
+            <div class="cake-tier cake-tier--top">
+
+              <span class="cake-drip drip-1"></span>
+              <span class="cake-drip drip-2"></span>
+              <span class="cake-drip drip-3"></span>
+
+            </div>
+
+
+            <!-- Middle layer -->
+
+            <div class="cake-tier cake-tier--mid">
+
+              <span class="cake-drip drip-1"></span>
+              <span class="cake-drip drip-2"></span>
+              <span class="cake-drip drip-3"></span>
+              <span class="cake-drip drip-4"></span>
+
+            </div>
+
+
+            <!-- Base -->
+
+            <div class="cake-tier cake-tier--base">
+
+              <span class="cake-drip drip-1"></span>
+              <span class="cake-drip drip-2"></span>
+              <span class="cake-drip drip-3"></span>
+              <span class="cake-drip drip-4"></span>
+              <span class="cake-drip drip-5"></span>
+
+            </div>
+
+
+            <!-- Plate -->
+
+            <div class="cake-plate"></div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Wish button -->
+
+        <button
+          type="button"
+          id="wishButton"
+          class="btn btn-primary wish-button"
+          aria-describedby="wishText"
+        >
+
+          <span class="btn-content">
+            <span>Make a Wish</span>
+            <span>✨</span>
+          </span>
+
+        </button>
+
+
+        <p
+          id="wishText"
+          class="wish-text"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+
+
+        <!-- =================================================
+             PERSONAL MESSAGES
+        ================================================== -->
+
+        <div class="birthday-messages">
+
+          <p class="msg-block msg-block--greeting">
+            Hi <span class="name-inline">there</span>,
+            this one's just for you. 💖
+          </p>
+
+          <p class="msg-block msg-block--emotional">
+            Every candle carries a wish someone quietly hopes comes true.
+          </p>
+
+          <p class="msg-block msg-block--motivational">
+            Go chase the year ahead the way you'd chase the last slice of cake.
+          </p>
+
+          <p class="msg-block msg-block--final">
+            Whatever comes next — we hope it's wonderful, wild,
+            and entirely yours.
+          </p>
+
+        </div>
+
+
+        <!-- =================================================
+             SURPRISE CARD
+        ================================================== -->
+
+        <div
+          id="surpriseCard"
+          class="surprise-card"
+          data-revealed="false"
+        >
+
+          <div class="surprise-card-inner">
+
+            <!-- Front -->
+
+            <div class="surprise-face surprise-face--front">
+
+              <span class="card-sparkle">✦</span>
+
+              <p class="surprise-label">
+                There's one more thing…
+              </p>
+
+              <button
+                type="button"
+                id="revealButton"
+                class="btn btn-ghost"
+                aria-expanded="false"
+                aria-controls="surpriseBack"
+              >
+                <span>Open the Card</span>
+              </button>
+
+            </div>
+
+
+            <!-- Back -->
+
+            <div
+              id="surpriseBack"
+              class="surprise-face surprise-face--back"
+              aria-hidden="true"
+            >
+
+              <p class="surprise-hidden-message">
+                You are loved far more than you know.
+                Happy birthday — here's to you. 🎉
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             MUSIC CONTROL
+        ================================================== -->
+
+        <div class="music-control">
+
+          <div class="music-equalizer" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <button
+            type="button"
+            id="musicButton"
+            class="music-btn"
+            aria-pressed="false"
+            aria-label="Play birthday music"
+          >
+
+            <span
+              class="icon icon-play"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              class="icon icon-pause"
+              aria-hidden="true"
+            ></span>
+
+            <span
+              id="musicStatus"
+              class="music-status"
+            >
+              Play birthday music
+            </span>
+
+          </button>
+
+
+          <!--
+            MUSIC FILE
+
+            Project structure:
+
+            birthday-surprise/
+            ├── index.html
+            ├── style.css
+            ├── script.js
+            └── music/
+                └── birthday.mp3
+
+            Music is intentionally NOT autoplayed on page load.
+            It starts from the Begin the Surprise user gesture.
+          -->
+
+          <audio
+            id="birthdayAudio"
+            preload="metadata"
+            loop
+          >
+
+            <source
+              src="music/birthday.mp3"
+              type="audio/mpeg"
+            />
+
+            Your browser does not support HTML5 audio.
+
+          </audio>
+
+        </div>
+
+
+        <!-- =================================================
+             FINAL SECTION
+        ================================================== -->
+
+        <footer class="final-section">
+
+          <p class="final-line">
+            Your next chapter starts now <span>✨</span>
+          </p>
+
+          <div class="final-actions">
+
+            <button
+              type="button"
+              id="replayButton"
+              class="btn btn-secondary"
+            >
+              <span>Replay the Surprise</span>
+            </button>
+
+            <button
+              type="button"
+              id="shareButton"
+              class="btn btn-ghost"
+              aria-label="Share this birthday surprise"
+            >
+              <span>Share</span>
+            </button>
+
+          </div>
+
+          <p class="footer-note">
+            Made with care, one candle at a time — BirthdayVerse
+          </p>
+
+        </footer>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+
+</html>
